@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<body>
+<header th:replace="layout/layout :: header"></header>
+<div class="container py-4">
+    <div class="card bg-light">
+        <div class="card-body">
+            <h1 class="text-primary " th:text="${titulo}"></h1>
+            <form th:action="@{/form}" th:object="${cliente}" method="post" enctype="multipart/form-data">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Nombre</td>
+                        <td><input type="text" th:field="*{nombre}" class="form-control"/></td>
+                        <td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
+                            th:errorclass="'alert alert-danger'"></td>
+                    </tr>
+                    <tr>
+                        <td>Apellidos</td>
+                        <td><input type="text" th:field="*{apellidos}" class="form-control"/></td>
+                        <td th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"
+                            th:errorclass="'alert alert-danger'"></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="email" th:field="*{email}" class="form-control"/></td>
+                        <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                            th:errorclass="'alert alert-danger'"></td>
+                    </tr>
+                    <tr>
+                        <td>Fecha</td>
+                        <td><input type="date" th:field="*{createAt}" class="form-control"/></td>
+                        <td th:if="${#fields.hasErrors('createAt')}" th:errors="*{createAt}"
+                            th:errorclass="'alert alert-danger'"></td>
+                    </tr>
+                    <tr>
+                        <td for="file">Foto</td>
+                        <td><input type="file"  class="form-control" name="file"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="crear cliente" class="btn btn-primary form-control"/></td>
+                    </tr>
+                </table>
+                <!--<td><input type="hidden" th:field="*{id}"/></td>-->
+            </form>
+        </div>
+    </div>
+
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
